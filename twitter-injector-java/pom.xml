@@ -9,37 +9,37 @@
     <url>http://maven.apache.org</url>
 
 
-    <repositories>
+    <!--<repositories>-->
 
-        <repository>
-            <id>twitter4j.org</id>
-            <name>twitter4j.org Repository</name>
-            <url>http://twitter4j.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
+        <!--<repository>-->
+            <!--<id>twitter4j.org</id>-->
+            <!--<name>twitter4j.org Repository</name>-->
+            <!--<url>http://twitter4j.org/maven2</url>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
 
 
-            <repository>
-                <id>spy</id>
-                <name>Couchbase Repository</name>
-                <layout>default</layout>
-                <url>http://files.couchbase.com/maven2/</url>
-            </repository>
+            <!--&lt;!&ndash;<repository>&ndash;&gt;-->
+                <!--&lt;!&ndash;<id>spy</id>&ndash;&gt;-->
+                <!--&lt;!&ndash;<name>Couchbase Repository</name>&ndash;&gt;-->
+                <!--&lt;!&ndash;<layout>default</layout>&ndash;&gt;-->
+                <!--&lt;!&ndash;<url>http://files.couchbase.com/maven2/</url>&ndash;&gt;-->
+            <!--&lt;!&ndash;</repository>&ndash;&gt;-->
 
-    </repositories>
+    <!--</repositories>-->
 
 
     <dependencies>
 
         <dependency>
-            <groupId>couchbase</groupId>
+            <groupId>com.couchbase.client</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.1.9</version>
+            <version>1.4.4</version>
             <type>jar</type>
         </dependency>
 
@@ -53,13 +53,13 @@
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
-            <version>2.2.6</version>
+            <version>4.0.2</version>
         </dependency>
 
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-stream</artifactId>
-            <version>2.2.6</version>
+            <version>4.0.2</version>
         </dependency>
 
 
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20090211</version>
+            <version>20140107</version>
         </dependency>
 
 
@@ -105,6 +105,15 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                      <source>1.7</source>
+                      <target>1.7</target>
+                    </configuration>
+                  </plugin>
         </plugins>
     </build>
 

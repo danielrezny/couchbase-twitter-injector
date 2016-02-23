@@ -13,6 +13,9 @@ import twitter4j.json.DataObjectFactory;
 import java.io.InputStream;
 import java.net.URI;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -54,7 +57,7 @@ public class TwitterInjector {
             } else {
 
                 if (track == null & prop.contains(COUCHBASE_TWITTER_TRACK) && !prop.getProperty(COUCHBASE_TWITTER_TRACK).isEmpty()  ) {
-                    track = prop.getProperty(COUCHBASE_TWITTER_TRACK).split(",");;
+                    track = prop.getProperty(COUCHBASE_TWITTER_TRACK).split(",");
                 } else {
                     System.out.println("No track : get all feeds...");
                 }
@@ -106,6 +109,8 @@ public class TwitterInjector {
                     // see : https://dev.twitter.com/docs/twitter-ids-json-and-snowflake
                     try {
                         JSONObject statusAsJson = new JSONObject(twitterMessage);
+                        Files.write(Paths.get("./data.json"), twitterMessage.replace("\n", "").replace("\r", "").getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./data.json"), "\n".getBytes(), StandardOpenOption.APPEND);
                         String idStr = statusAsJson.getString("id_str");
                         cbClient.add(idStr, 0, twitterMessage);
                         System.out.print(".");
@@ -124,6 +129,11 @@ public class TwitterInjector {
 
                 @Override
                 public void onScrubGeo(long userId, long upToStatusId) {
+                }
+
+                @Override
+                public void onStallWarning(StallWarning stallWarning) {
+
                 }
 
                 @Override
